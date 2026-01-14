@@ -1,0 +1,1 @@
+FROM mayanedms/mayanedms:latest
