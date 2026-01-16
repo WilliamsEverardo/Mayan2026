@@ -1,15 +1,15 @@
 services:
   - type: web
-    name: mayan-edms-demo
+    name: mayan-edms
     env: docker
     plan: free
-    autoDeploy: true
+    autoDeploy: false
+    image:
+      url: mayanedms/mayanedms:latest
     envVars:
-      - key: MAYAN_ALLOWED_HOSTS
-        value: "*"
-      - key: MAYAN_CSRF_TRUSTED_ORIGINS
-        value: https://*.onrender.com
-      - key: MAYAN_DATABASE_ENGINE
-        value: django.db.backends.sqlite3
-      - key: MAYAN_MEDIA_ROOT
-        value: /var/lib/mayan/media
+      - key: MAYAN_SETTINGS_MODULE
+        value: mayan.settings.production
+    disk:
+      name: mayan_data
+      mountPath: /var/lib/mayan
+      sizeGB: 10
